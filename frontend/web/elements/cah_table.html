@@ -4,23 +4,23 @@
 <polymer-element name="cah-table" attributes="gameId playerId">
   <template>
     <link rel="stylesheet" href="cah_table.css">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <core-ajax-dart
       auto url="/data/black_cards.json" handleAs="json" response="{{blackCards}}">
     </core-ajax-dart>
     <core-ajax-dart
       auto url="/data/white_cards.json" handleAs="json" response="{{whiteCards}}">
     </core-ajax-dart>
+    <core-ajax-dart
+      auto
+      url="/cahwebapp"
+      params="{{ {action: 'gethand', gameid: gameId,
+        playerid: playerId} | stringify }}"
+      handleAs="json"
+      response="{{handResponse}}">
+    </core-ajax-dart>
     <h1>GAME TIME YOOO</h1>
     <div class="hand">
-      <core-ajax-dart
-        auto
-        url="/cahwebapp"
-        params="{{ {action: 'gethand', gameid: gameId,
-          playerid: playerId} | stringify }}"
-        handleAs="json"
-        response="{{handResponse}}">
-      </core-ajax-dart>
-      Hand in the hizzy
       <template repeat="{{card in handResponse['white']}}">
         <div class="white-card">{{whiteCards[card]}}</div>
       </template>
@@ -31,7 +31,6 @@
       </template>
     </div>
     <div class="scores">
-      Leda boyard
     </div>
   </template>
   <script type="application/dart" src="cah_table.dart"></script>
