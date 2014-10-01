@@ -1,0 +1,19 @@
+<link rel="import" href="packages/polymer/polymer.html">
+<link rel="import" href="packages/core_elements/core_ajax_dart.html">
+<link rel="import" href="cah_lobby.html">
+
+<polymer-element name="create-game">
+  <template>
+    <h1>Create new Game</h1>
+    <core-ajax-dart
+      auto
+      id="createRpc"
+      url="/cahwebapp"
+      handleAs="json"
+      on-core-response="{{onCreated}}"></core-ajax-dart>
+      <template if="{{gameId}}">
+        <cah-lobby gameId="{{gameId}}" owner="true"></cah-lobby>
+      </template>
+  </template>
+  <script type="application/dart" src="create_game.dart"></script>
+</polymer-element>

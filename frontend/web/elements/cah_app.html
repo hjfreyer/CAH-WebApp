@@ -1,0 +1,28 @@
+<link rel="import" href="packages/polymer/polymer.html">
+<link rel="import" href="cah_table.html">
+<link rel="import" href="create_game.html">
+<link rel="import" href="join_game.html">
+
+<polymer-element name="cah-app">
+  <template>
+    {{pageName}}
+    <template if="{{pageName == 'INDEX'}}">
+      Index page!
+    </template>
+
+    <template if="{{pageName == 'NEW_GAME'}}">
+      <create-game on-game-started="{{gameStarted}}"></create-game>
+    </template>
+
+    <template if="{{pageName == 'JOIN_GAME'}}">
+      <join-game gameId="{{params['gameId']}}"
+        on-game-started="{{gameStarted}}"></join-game>
+    </template>
+
+    <template if="{{pageName == 'TABLE'}}">
+      <cah-table gameId="{{params['gameId']}}"
+        playerId="{{params['playerId']}}"></cah-table>
+    </template>
+  </template>
+  <script type="application/dart" src="cah_app.dart"></script>
+</polymer-element>

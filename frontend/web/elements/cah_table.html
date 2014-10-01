@@ -1,0 +1,38 @@
+<link rel="import" href="packages/polymer/polymer.html">
+<link rel="import" href="packages/core_elements/core_ajax_dart.html">
+
+<polymer-element name="cah-table" attributes="gameId playerId">
+  <template>
+    <link rel="stylesheet" href="cah_table.css">
+    <core-ajax-dart
+      auto url="/data/black_cards.json" handleAs="json" response="{{blackCards}}">
+    </core-ajax-dart>
+    <core-ajax-dart
+      auto url="/data/white_cards.json" handleAs="json" response="{{whiteCards}}">
+    </core-ajax-dart>
+    <h1>GAME TIME YOOO</h1>
+    <div class="hand">
+      <core-ajax-dart
+        auto
+        url="/cahwebapp"
+        params="{{ {action: 'gethand', gameid: gameId,
+          playerid: playerId} | stringify }}"
+        handleAs="json"
+        response="{{handResponse}}">
+      </core-ajax-dart>
+      Hand in the hizzy
+      <template repeat="{{card in handResponse['white']}}">
+        <div class="white-card">{{whiteCards[card]}}</div>
+      </template>
+    </div>
+    <div class="table">
+      <template if="{{handResponse['black']}}">
+        <div class="black-card">{{blackCards[handResponse['black']]}}</div>
+      </template>
+    </div>
+    <div class="scores">
+      Leda boyard
+    </div>
+  </template>
+  <script type="application/dart" src="cah_table.dart"></script>
+</polymer-element>

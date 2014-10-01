@@ -1,0 +1,10 @@
+<link rel="import" href="packages/polymer/polymer.html">
+<link rel="import" href="packages/core_elements/core_ajax_dart.html">
+<link rel="import" href="cah_lobby.html">
+
+<polymer-element name="join-game" attributes="gameId" noscript>
+  <template>
+    <h1>Join Game</h1>
+    <cah-lobby gameId="{{gameId}}" owner="false"></cah-lobby>
+  </template>
+</polymer-element>
