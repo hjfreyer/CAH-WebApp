@@ -2,9 +2,10 @@
 <link rel="import" href="packages/core_elements/core_ajax_dart.html">
 <link rel="import" href="cah_lobby.html">
 
-<polymer-element name="join-game" attributes="gameId" noscript>
+<polymer-element name="join-game" attributes="gameId">
   <template>
     <h1>Join Game</h1>
     <cah-lobby gameId="{{gameId}}" owner="false"></cah-lobby>
   </template>
+  <script type="application/dart" src="join_game.dart"></script>
 </polymer-element>

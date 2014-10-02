@@ -1,36 +1,47 @@
 <link rel="import" href="packages/polymer/polymer.html">
 <link rel="import" href="packages/core_elements/core_ajax_dart.html">
 
+<link rel="import" href="cah_rpc.html">
+
 <polymer-element name="cah-table" attributes="gameId playerId">
   <template>
     <link rel="stylesheet" href="cah_table.css">
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"> -->
     <core-ajax-dart
       auto url="/data/black_cards.json" handleAs="json" response="{{blackCards}}">
     </core-ajax-dart>
     <core-ajax-dart
       auto url="/data/white_cards.json" handleAs="json" response="{{whiteCards}}">
     </core-ajax-dart>
-    <core-ajax-dart
+    <cah-rpc
       auto
-      url="/cahwebapp"
-      params="{{ {action: 'gethand', gameid: gameId,
-        playerid: playerId} | stringify }}"
-      handleAs="json"
+      action="gethand"
+      params="{{ {gameid: gameId, playerid: playerId} }}"
       response="{{handResponse}}">
-    </core-ajax-dart>
-    <h1>GAME TIME YOOO</h1>
-    <div class="hand">
-      <template repeat="{{card in handResponse['white']}}">
-        <div class="white-card">{{whiteCards[card]}}</div>
-      </template>
-    </div>
-    <div class="table">
+    </cah-rpc>
+    <div class="container">
       <template if="{{handResponse['black']}}">
-        <div class="black-card">{{blackCards[handResponse['black']]}}</div>
+        <div class="black-stack card-stack">
+          <div class="black-card">{{blackCards[handResponse['black']]}}</div>
+        </div>
       </template>
-    </div>
-    <div class="scores">
+      <div class="hand card-stack">
+        <template repeat="{{card in handResponse['white']}}">
+          <div class="white-card" data-card="{{card}}"
+            on-click="{{select}}">{{whiteCards[card]}}</div>
+        </template>
+      </div>
+      <!-- <template repeat="{{card in handResponse['white']}}">
+        <div class="card-table">
+          <div class="card-stack">
+              <div class="white-card">{{whiteCards[card]}}</div>
+          </div>
+            </template>
+        </template>
+      </div>
+      <div class="scores">
+        Wgat up
+      </div> -->
     </div>
   </template>
   <script type="application/dart" src="cah_table.dart"></script>

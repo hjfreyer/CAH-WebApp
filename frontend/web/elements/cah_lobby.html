@@ -1,5 +1,6 @@
 <link rel="import" href="packages/polymer/polymer.html">
 <link rel="import" href="packages/core_elements/core_ajax_dart.html">
+<link rel="import" href="cah_rpc.html">
 
 <polymer-element name="cah-lobby" attributes="gameId owner">
   <template>
@@ -9,11 +10,15 @@
         <input value="{{name}}" required>
         <button>Join</button>
       </form>
-      <core-ajax-dart
+      <cah-rpc
         id="joinRpc"
-        url="/cahwebapp"
-        handleAs="json"
-        on-core-response="{{joined}}"></core-ajax-dart>
+        action="register"
+        params="{{ {gameid: gameId,
+                     name: name,
+                     type: 'web',
+                     watcher: 'false'} }}"
+        on-core-response="{{joined}}">
+      </cah-rpc>
     </template>
     <template if="{{playerId}}">
       <input readonly="readonly" onClick="this.select()"
@@ -22,29 +27,29 @@
     <h2>Other Players</h2>
     <ul>
       <template repeat="{{player in configResponse['players']}}">
-        <li>Foo</li>
+        <li>{{player['name']}}</li>
       </template>
     </ul>
     <a href="/#/">Go</a>
-    <core-ajax-dart
+    <cah-rpc
       auto
       id="configRpc"
-      url="/cahwebapp"
-      params='{"action": "getconfig", "gameid": "{{gameId}}"}'
-      handleAs="json"
-      response="{{configResponse}}"></core-ajax-dart>
-    <core-ajax-dart
+      action="getconfig"
+      params="{{ {gameid: gameId} }}"
+      response="{{configResponse}}">
+    </cah-rpc>
+    <cah-rpc
       auto
       id="roundRpc"
-      url="/cahwebapp"
-      params='{"action": "getround", "gameid": "{{gameId}}"}'
-      handleAs="json"
-      response="{{roundResponse}}"></core-ajax-dart>
-    <core-ajax-dart
+      action="getround"
+      params="{{ {gameid: gameId} }}"
+      response="{{roundResponse}}">
+    </cah-rpc>
+    <cah-rpc
       id="startRpc"
-      url="/cahwebapp"
-      params="{{ {action: 'start', gameid: gameId, playerid: playerId} | stringify }}"
-      handleAs="json"></core-ajax-dart>
+      action="start"
+      params="{{ {gameid: gameId, playerid: playerId} }}">
+    </cah-rpc>
     <template if="{{playerId != null && owner}}">
       <button on-click="{{start}}">Start Game</button>
     </template>

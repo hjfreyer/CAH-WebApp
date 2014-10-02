@@ -1,12 +1,15 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:polymer/polymer.dart';
 
+import 'base.dart';
+
 @CustomTag('create-game')
-class CreateGameElement extends PolymerElement {
+class CreateGameElement extends CahElement {
   @observable String gameId;
 
   CreateGameElement.created() : super.created();
 
-  onCreated() => gameId = $['createRpc'].response["gameid"];
+  onCreated(e) => gameId = e.detail['response']['gameid'];
 }

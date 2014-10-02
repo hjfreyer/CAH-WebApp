@@ -1,0 +1,10 @@
+<link rel="import" href="packages/polymer/polymer.html">
+<link rel="import" href="packages/core_elements/core_ajax_dart.html">
+
+<polymer-element name="cah-rpc" attributes="auto action params response">
+  <template>
+    <core-ajax-dart id="rpc" handleAs="json" response="{{response}}">
+    </core-ajax-dart>
+  </template>
+  <script type="application/dart" src="cah_rpc.dart"></script>
+</polymer-element>

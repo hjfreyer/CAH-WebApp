@@ -1,0 +1,63 @@
+$cardPadding: 1.25em;
+$cardWidth: 9.5em;
+$cardHeight: 14.5em;
+$brandSizeRatio: 0.6;
+
+@mixin card($bg) {
+  display: block;
+  position: relative;
+
+  font-family: 'Helvetica';
+  font-weight: bold;
+
+  width: $cardWidth;
+  padding: $cardPadding;
+
+  z-index: 2;
+
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    height: $cardHeight / $brandSizeRatio;
+    width: $cardWidth / $brandSizeRatio;
+    border: 1px solid black;
+    border-radius: 0.5em / $brandSizeRatio;
+    background: $bg;
+    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.5);
+
+    display: flex;
+    padding: $cardPadding / $brandSizeRatio;
+    content: 'Inhumane Cards';
+    flex-direction: column;
+    justify-content: flex-end;
+    font-size: 1em * $brandSizeRatio;
+  }
+    -webkit-transform-origin: -$cardPadding $cardHeight + $cardPadding * 2;
+
+    transition: -webkit-transform 180ms;
+  &:hover {
+    -webkit-transform: rotate(5deg);
+  }
+
+  cursor: pointer;
+
+  @for $i from 0 to 20 {
+    &:nth-child(#{$i}) {
+  #    -webkit-transform: rotate(#{2*random() - 1}deg);
+    }
+  }
+}
+
+body {
+  position: relative;
+  z-index: 1;
+}
+
+
+white-card {
+  @include card(white);
+  font-size: 20px;
+}

@@ -1,0 +1,76 @@
+$cardPadding: 1.25em;
+$cardWidth: 12em;
+$cardHeight: 17em;
+$brandSizeRatio: 0.6;
+
+*, *:before, *:after { box-sizing: border-box }
+
+@mixin card($bg) {
+  display: block;
+  position: relative;
+
+  font-family: 'Helvetica';
+  font-weight: bold;
+
+  width: $cardWidth;
+  padding: $cardPadding;
+
+  z-index: 2;
+
+  &:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+
+    height: $cardHeight / $brandSizeRatio;
+    width: $cardWidth / $brandSizeRatio;
+    border: 1px solid black;
+    border-radius: 0.5em / $brandSizeRatio;
+    background: $bg;
+    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.5);
+
+    display: flex;
+    padding: $cardPadding / $brandSizeRatio;
+    content: 'Inhumane Cards';
+    flex-direction: column;
+    justify-content: flex-end;
+    font-size: 1em * $brandSizeRatio;
+  }
+
+  cursor: pointer;
+}
+
+@mixin leaning {
+  -webkit-transform-origin: -$cardPadding $cardHeight + $cardPadding * 2;
+
+  transition: -webkit-transform 180ms;
+  &:hover {
+    -webkit-transform: rotate(5deg);
+  }
+}
+
+body {
+  position: relative;
+  z-index: 1;
+}
+
+.white-card {
+  @include card(white);
+}
+
+.black-card {
+  @include card(black);
+  color: white;
+}
+
+.card-outline {
+  height: $cardHeight;
+  width: $cardWidth;
+  border: 2px dashed black;
+  border-radius: 0.5em;
+}
+
+.card-stack .white-card:last-child, .card-stack .black-card:last-child {
+  height: $cardHeight;
+}
