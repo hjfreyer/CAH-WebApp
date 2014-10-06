@@ -7,9 +7,6 @@ import 'package:polymer/polymer.dart';
 
 @CustomTag('cah-lobby')
 class LobbyElement extends PolymerElement {
-  // TODO(hjfreyer): Abstract polling into a subelement.
-  Timer pollTimer;
-
   @published String gameId;
   @published bool owner;
 
@@ -23,13 +20,8 @@ class LobbyElement extends PolymerElement {
   @observable var roundResponse;
 
   LobbyElement.created(): super.created() {
-    pollTimer = new Timer.periodic(new Duration(seconds: 1), poll);
     protocol = window.location.protocol;
     host = window.location.host;
-  }
-
-  void detached() {
-    pollTimer.cancel();
   }
 
   void joinGame(e) {

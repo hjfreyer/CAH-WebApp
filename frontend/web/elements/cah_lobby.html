@@ -1,9 +1,11 @@
 <link rel="import" href="packages/polymer/polymer.html">
 <link rel="import" href="packages/core_elements/core_ajax_dart.html">
+<link rel="import" href="cah_poller.html">
 <link rel="import" href="cah_rpc.html">
 
 <polymer-element name="cah-lobby" attributes="gameId owner">
   <template>
+    <cah-poller on-remote-update="{{poll}}"></cah-poller>
     <template if="{{playerId == null}}">
       <form on-submit="{{joinGame}}">
         <label>Name</label>
