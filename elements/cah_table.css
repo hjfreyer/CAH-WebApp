@@ -1,0 +1,132 @@
+*, *:before, *:after {
+  box-sizing: border-box; }
+
+.white-card {
+  display: block;
+  position: relative;
+  font-family: 'Helvetica';
+  font-weight: bold;
+  width: 12em;
+  padding: 1.25em;
+  z-index: 2;
+  cursor: pointer; }
+  .white-card:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 28.33333em;
+    width: 20em;
+    border: 1px solid black;
+    border-radius: 0.83333em;
+    background: white;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 2.08333em;
+    content: 'Inhumane Cards';
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    font-size: 0.6em; }
+
+.black-card {
+  display: block;
+  position: relative;
+  font-family: 'Helvetica';
+  font-weight: bold;
+  width: 12em;
+  padding: 1.25em;
+  z-index: 2;
+  cursor: pointer;
+  color: white; }
+  .black-card:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 28.33333em;
+    width: 20em;
+    border: 1px solid black;
+    border-radius: 0.83333em;
+    background: black;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 2.08333em;
+    content: 'Inhumane Cards';
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    font-size: 0.6em; }
+
+.card-stack .white-card:last-child, .card-stack .black-card:last-child {
+  height: 17em; }
+
+.container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap-reverse;
+      -ms-flex-flow: row wrap-reverse;
+          flex-flow: row wrap-reverse;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 18px; }
+
+.hand {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-order: 1;
+      -ms-flex-order: 1;
+          order: 1;
+  padding: 0 30px 10px 30px;
+  -webkit-flex-grow: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0; }
+  .hand .white-card {
+    -webkit-transform-origin: -1.25em 19.5em;
+        -ms-transform-origin: -1.25em 19.5em;
+            transform-origin: -1.25em 19.5em;
+    -webkit-transition: -webkit-transform 180ms;
+            transition: transform 180ms; }
+    .hand .white-card:hover {
+      -webkit-transform: rotate(5deg);
+          -ms-transform: rotate(5deg);
+              transform: rotate(5deg); }
+
+.black-stack {
+  -webkit-order: 2;
+      -ms-flex-order: 2;
+          order: 2;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  align-item: center; }
+
+/*# sourceMappingURL=cah_table.css.map */

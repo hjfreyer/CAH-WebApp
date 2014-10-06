@@ -1,0 +1,74 @@
+*, *:before, *:after {
+  box-sizing: border-box; }
+
+.white-card {
+  display: block;
+  position: relative;
+  font-family: 'Helvetica';
+  font-weight: bold;
+  width: 12em;
+  padding: 1.25em;
+  z-index: 2;
+  cursor: pointer; }
+  .white-card:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 28.33333em;
+    width: 20em;
+    border: 1px solid black;
+    border-radius: 0.83333em;
+    background: white;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 2.08333em;
+    content: 'Inhumane Cards';
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    font-size: 0.6em; }
+
+.black-card {
+  display: block;
+  position: relative;
+  font-family: 'Helvetica';
+  font-weight: bold;
+  width: 12em;
+  padding: 1.25em;
+  z-index: 2;
+  cursor: pointer;
+  color: white; }
+  .black-card:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 28.33333em;
+    width: 20em;
+    border: 1px solid black;
+    border-radius: 0.83333em;
+    background: black;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 2.08333em;
+    content: 'Inhumane Cards';
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    font-size: 0.6em; }
+
+.card-stack .white-card:last-child, .card-stack .black-card:last-child {
+  height: 17em; }
+
+/*# sourceMappingURL=base.css.map */

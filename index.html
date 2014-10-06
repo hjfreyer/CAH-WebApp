@@ -1,0 +1,580 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inhumane Cards</title>
+    
+    
+    
+
+    
+
+    
+  </head>
+  <body><link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css"><script src="packages/web_components/platform.js"></script><script src="packages/web_components/dart_support.js"></script>
+
+
+
+
+
+
+
+<!-- unminfied for debugging:
+<link rel="import" href="src/js/polymer/layout.html">
+<script src="src/js/polymer/polymer.concat.js"></script>
+-->
+
+
+
+<style shim-shadowdom="">
+/*******************************
+          Flex Layout
+*******************************/
+
+html /deep/ [layout][horizontal], html /deep/ [layout][vertical] {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+html /deep/ [layout][horizontal][inline], html /deep/ [layout][vertical][inline] {
+  display: -ms-inline-flexbox;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+}
+
+html /deep/ [layout][horizontal] {
+  -ms-flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+}
+
+html /deep/ [layout][horizontal][reverse] {
+  -ms-flex-direction: row-reverse;
+  -webkit-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+}
+
+html /deep/ [layout][vertical] {
+  -ms-flex-direction: column;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+
+html /deep/ [layout][vertical][reverse] {
+  -ms-flex-direction: column-reverse;
+  -webkit-flex-direction: column-reverse;
+  flex-direction: column-reverse;
+}
+
+html /deep/ [layout][wrap] {
+  -ms-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+html /deep/ [layout][wrap-reverse] {
+  -ms-flex-wrap: wrap-reverse;
+  -webkit-flex-wrap: wrap-reverse;
+  flex-wrap: wrap-reverse;
+}
+
+html /deep/ [flex] {
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+
+html /deep/ [flex][auto] {
+  -ms-flex: 1 1 auto;
+  -webkit-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
+html /deep/ [flex][none] {
+  -ms-flex: none;
+  -webkit-flex: none;
+  flex: none;
+}
+
+html /deep/ [flex][one] {
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+
+html /deep/ [flex][two] {
+  -ms-flex: 2;
+  -webkit-flex: 2;
+  flex: 2;
+}
+
+html /deep/ [flex][three] {
+  -ms-flex: 3;
+  -webkit-flex: 3;
+  flex: 3;
+}
+
+html /deep/ [flex][four] {
+  -ms-flex: 4;
+  -webkit-flex: 4;
+  flex: 4;
+}
+
+html /deep/ [flex][five] {
+  -ms-flex: 5;
+  -webkit-flex: 5;
+  flex: 5;
+}
+
+html /deep/ [flex][six] {
+  -ms-flex: 6;
+  -webkit-flex: 6;
+  flex: 6;
+}
+
+html /deep/ [flex][seven] {
+  -ms-flex: 7;
+  -webkit-flex: 7;
+  flex: 7;
+}
+
+html /deep/ [flex][eight] {
+  -ms-flex: 8;
+  -webkit-flex: 8;
+  flex: 8;
+}
+
+html /deep/ [flex][nine] {
+  -ms-flex: 9;
+  -webkit-flex: 9;
+  flex: 9;
+}
+
+html /deep/ [flex][ten] {
+  -ms-flex: 10;
+  -webkit-flex: 10;
+  flex: 10;
+}
+
+html /deep/ [flex][eleven] {
+  -ms-flex: 11;
+  -webkit-flex: 11;
+  flex: 11;
+}
+
+html /deep/ [flex][twelve] {
+  -ms-flex: 12;
+  -webkit-flex: 12;
+  flex: 12;
+}
+
+/* alignment in cross axis */
+
+html /deep/ [layout][start] {
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+}
+
+html /deep/ [layout][center], html /deep/ [layout][center-center] {
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+html /deep/ [layout][end] {
+  -ms-flex-align: end;
+  -webkit-align-items: flex-end;
+  align-items: flex-end;
+}
+
+/* alignment in main axis */
+
+html /deep/ [layout][start-justified] {
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+}
+
+html /deep/ [layout][center-justified], html /deep/ [layout][center-center] {
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+html /deep/ [layout][end-justified] {
+  -ms-flex-pack: end;
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;
+}
+
+html /deep/ [layout][around-justified] {
+  -ms-flex-pack: around;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+}
+
+html /deep/ [layout][justified] {
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+
+/* self alignment */
+
+html /deep/ [self-start] {
+  -ms-align-self: flex-start;
+  -webkit-align-self: flex-start;
+  align-self: flex-start;
+}
+
+html /deep/ [self-center] {
+  -ms-align-self: center;
+  -webkit-align-self: center;
+  align-self: center;
+}
+
+html /deep/ [self-end] {
+  -ms-align-self: flex-end;
+  -webkit-align-self: flex-end;
+  align-self: flex-end;
+}
+
+html /deep/ [self-stretch] {
+  -ms-align-self: stretch;
+  -webkit-align-self: stretch;
+  align-self: stretch;
+}
+
+/*******************************
+          Other Layout
+*******************************/
+
+html /deep/ [block] {
+  display: block;
+}
+
+/* ie support for hidden */
+html /deep/ [hidden] {
+  display: none !important;
+}
+
+html /deep/ [relative] {
+  position: relative;
+}
+
+html /deep/ [fit] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+body[fullbleed] {
+  margin: 0;
+  height: 100vh;
+}
+
+/*******************************
+            Other
+*******************************/
+
+html /deep/ [segment], html /deep/ segment {
+  display: block;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 1em 0.5em;
+  padding: 1em;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 5px 5px 5px 5px;
+}
+
+</style><script src="packages/polymer/src/js/polymer/polymer.js"></script><script>
+// TODO(sigmund): remove this script tag (dartbug.com/19650). This empty
+// script tag is necessary to work around a bug in Chrome 36.
+</script>
+
+
+
+
+
+
+
+
+<polymer-element name="core-xhr-dart" hidden="">
+  
+</polymer-element>
+<polymer-element name="core-ajax-dart" hidden="" attributes="url handleAs auto params response method headers body contentType withCredentials">
+  
+</polymer-element>
+
+
+
+<polymer-element name="cah-rpc" attributes="auto action params response">
+  <template>
+    <core-ajax-dart id="rpc" handleas="json" response="{{response}}">
+    </core-ajax-dart>
+  </template>
+  
+</polymer-element>
+<polymer-element name="cah-table" attributes="gameId playerId">
+  <template>
+    <style>*, *:before, *:after {
+  box-sizing: border-box; }
+
+.white-card {
+  display: block;
+  position: relative;
+  font-family: 'Helvetica';
+  font-weight: bold;
+  width: 12em;
+  padding: 1.25em;
+  z-index: 2;
+  cursor: pointer; }
+  .white-card:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 28.33333em;
+    width: 20em;
+    border: 1px solid black;
+    border-radius: 0.83333em;
+    background: white;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 2.08333em;
+    content: 'Inhumane Cards';
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    font-size: 0.6em; }
+
+.black-card {
+  display: block;
+  position: relative;
+  font-family: 'Helvetica';
+  font-weight: bold;
+  width: 12em;
+  padding: 1.25em;
+  z-index: 2;
+  cursor: pointer;
+  color: white; }
+  .black-card:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    height: 28.33333em;
+    width: 20em;
+    border: 1px solid black;
+    border-radius: 0.83333em;
+    background: black;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 2.08333em;
+    content: 'Inhumane Cards';
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    font-size: 0.6em; }
+
+.card-stack .white-card:last-child, .card-stack .black-card:last-child {
+  height: 17em; }
+
+.container {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-flow: row wrap-reverse;
+      -ms-flex-flow: row wrap-reverse;
+          flex-flow: row wrap-reverse;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 18px; }
+
+.hand {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-order: 1;
+      -ms-flex-order: 1;
+          order: 1;
+  padding: 0 30px 10px 30px;
+  -webkit-flex-grow: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0; }
+  .hand .white-card {
+    -webkit-transform-origin: -1.25em 19.5em;
+        -ms-transform-origin: -1.25em 19.5em;
+            transform-origin: -1.25em 19.5em;
+    -webkit-transition: -webkit-transform 180ms;
+            transition: transform 180ms; }
+    .hand .white-card:hover {
+      -webkit-transform: rotate(5deg);
+          -ms-transform: rotate(5deg);
+              transform: rotate(5deg); }
+
+.black-stack {
+  -webkit-order: 2;
+      -ms-flex-order: 2;
+          order: 2;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  align-item: center; }
+
+/*# sourceMappingURL=cah_table.css.map */</style>
+    <core-ajax-dart auto="" url="/data/black_cards.json" handleas="json" response="{{blackCards}}">
+    </core-ajax-dart>
+    <core-ajax-dart auto="" url="/data/white_cards.json" handleas="json" response="{{whiteCards}}">
+    </core-ajax-dart>
+    <cah-rpc auto="" action="gethand" params="{{ {gameid: gameId, playerid: playerId} }}" response="{{handResponse}}">
+    </cah-rpc>
+    <div class="container">
+      <template if="{{handResponse['black']}}">
+        <div class="black-stack card-stack">
+          <div class="black-card">{{blackCards[handResponse['black']]}}</div>
+        </div>
+      </template>
+      <div class="hand card-stack">
+        <template repeat="{{card in handResponse['white']}}">
+          <div class="white-card" data-card="{{card}}" on-click="{{select}}">{{whiteCards[card]}}</div>
+        </template>
+      </div>
+    </div>
+  </template>
+  
+</polymer-element>
+
+
+
+
+
+
+
+
+
+
+
+
+<polymer-element name="cah-poller">
+  <template></template>
+  
+</polymer-element>
+<polymer-element name="cah-lobby" attributes="gameId owner">
+  <template>
+    <cah-poller on-remote-update="{{poll}}"></cah-poller>
+    <template if="{{playerId == null}}">
+      <form on-submit="{{joinGame}}">
+        <label>Name</label>
+        <input value="{{name}}" required="">
+        <button>Join</button>
+      </form>
+      <cah-rpc id="joinRpc" action="register" params="{{ {gameid: gameId,
+                     name: name,
+                     type: 'web',
+                     watcher: 'false'} }}" on-core-response="{{joined}}">
+      </cah-rpc>
+    </template>
+    <template if="{{playerId}}">
+      <input readonly="readonly" onclick="this.select()" value="{{protocol}}//{{host}}/#/g/{{gameId}}/join">
+    </template>
+    <h2>Other Players</h2>
+    <ul>
+      <template repeat="{{player in configResponse['players']}}">
+        <li>{{player['name']}}</li>
+      </template>
+    </ul>
+    <a href="/#/">Go</a>
+    <cah-rpc auto="" id="configRpc" action="getconfig" params="{{ {gameid: gameId} }}" response="{{configResponse}}">
+    </cah-rpc>
+    <cah-rpc auto="" id="roundRpc" action="getround" params="{{ {gameid: gameId} }}" response="{{roundResponse}}">
+    </cah-rpc>
+    <cah-rpc id="startRpc" action="start" params="{{ {gameid: gameId, playerid: playerId} }}">
+    </cah-rpc>
+    <template if="{{playerId != null &amp;&amp; owner}}">
+      <button on-click="{{start}}">Start Game</button>
+    </template>
+  </template>
+  
+</polymer-element>
+<polymer-element name="create-game">
+  <template>
+    <h1>Create new Game</h1>
+    <!-- HACK HACK HACK - Should calculate these numbers on the fly. -->
+    <cah-rpc id="createRpc" auto="" params="{{ {w: '631', b1: '117', b2: '22', b3: '3' } }}" on-core-response="{{onCreated}}">
+    </cah-rpc>
+    <template if="{{gameId}}">
+      <cah-lobby gameid="{{gameId}}" owner="true"></cah-lobby>
+    </template>
+  </template>
+  
+</polymer-element>
+
+
+
+
+<polymer-element name="join-game" attributes="gameId">
+  <template>
+    <h1>Join Game</h1>
+    <cah-lobby gameid="{{gameId}}" owner="false"></cah-lobby>
+  </template>
+  
+</polymer-element>
+<polymer-element name="cah-app">
+  <template>
+    <template if="{{pageName == 'INDEX'}}">
+      Index page!
+    </template>
+
+    <template if="{{pageName == 'NEW_GAME'}}">
+      <create-game on-game-started="{{gameStarted}}"></create-game>
+    </template>
+
+    <template if="{{pageName == 'JOIN_GAME'}}">
+      <join-game gameid="{{params['gameId']}}" on-game-started="{{gameStarted}}"></join-game>
+    </template>
+
+    <template if="{{pageName == 'TABLE'}}">
+      <cah-table gameid="{{params['gameId']}}" playerid="{{params['playerId']}}"></cah-table>
+    </template>
+  </template>
+  
+</polymer-element>
+
+    <cah-app></cah-app>
+  
+
+<script src="index.html_bootstrap.dart.js" async=""></script></body></html>
